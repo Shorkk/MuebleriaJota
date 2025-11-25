@@ -1,0 +1,87 @@
+[
+  {
+    "id": 1,
+    "nombre": "Aparador Uspallata",
+    "descripcion": "Aparador en nogal con diseño minimalista y detalles en latón",
+    "precio": 18000,
+    "imagen": "https://piaachigaritba.github.io/img_muebleria/img/Aparador%20Uspallata.png"
+  },
+  {
+    "id": 2,
+    "nombre": "Biblioteca Recoleta",
+    "descripcion": "Estantería modular en acero, versátil y elegante para espacios modernos",
+    "precio": 25800,
+    "imagen": "https://piaachigaritba.github.io/img_muebleria/img/Biblioteca%20Recoleta.png"
+  },
+  {
+    "id": 3,
+    "nombre": "Butaca Mendoza",
+    "descripcion": "Butaca con base de madera, cómoda y elegante para ambientes modernos",
+    "precio": 15800,
+    "imagen": "https://piaachigaritba.github.io/img_muebleria/img/Butaca%20Mendoza.png"
+  },
+  {
+    "id": 4,
+    "nombre": "Sillon Copacabana",
+    "descripcion": "Sillón de cuero con base giratoria, cómodo y de diseño icónico",
+    "precio": 18500,
+    "imagen": "https://piaachigaritba.github.io/img_muebleria/img/Sillón%20Copacabana.png"
+  },
+  {
+    "id": 5,
+    "nombre": "Mesa de Centro Araucaria",
+    "descripcion": "Mesa circular en mármol y nogal, minimalista y elegante",
+    "precio": 22000,
+    "imagen": "https://piaachigaritba.github.io/img_muebleria/img/Mesa%20de%20Centro%20Araucaria.png"
+  },
+  {
+    "id": 6,
+    "nombre": "Mesa de Noche Aconcagua",
+    "descripcion": "Mesa de noche en roble FSC® con cajón y repisa, funcional y elegante",
+    "precio": 11900,
+    "imagen": "https://piaachigaritba.github.io/img_muebleria/img/Mesa%20de%20Noche%20Aconcagua.png"
+  },
+  {
+    "id": 7,
+    "nombre": "Cama Neuquen",
+    "descripcion": "Cama con cabecero y estructura de madera, minimalista y elegante.",
+    "precio": 45000,
+    "imagen": ""
+  },
+  {
+    "id": 8,
+    "nombre": "Sofa Patagonia",
+    "descripcion": "Sofá de 3 cuerpos en lino con patas de madera",
+    "precio": 30000,
+    "imagen": "https://piaachigaritba.github.io/img_muebleria/img/Sofá%20Patagonia.png"
+  },
+  {
+    "id": 9,
+    "nombre": "Mesa de Comedor Pampa",
+    "descripcion": "Mesa extensible de roble para 6-10 personas, con apertura suave y diseño elegante.",
+    "precio": 17000,
+    "imagen": "https://piaachigaritba.github.io/img_muebleria/img/Mesa%20Comedor%20Pampa.png"
+  },
+  {
+    "id": 10,
+    "nombre": "Silla Cordoba",
+    "descripcion": "Set de 4 sillas apilables, diseño ergonomico y duradero",
+    "precio": 9500,
+    "imagen": "https://piaachigaritba.github.io/img_muebleria/img/Sillas%20Córdoba.png"
+  },
+  {
+    "id": 11,
+    "nombre": "Escritorio Costa",
+    "descripcion": "Escritorio compacto de bambú con cajón y tapa pasacables",
+    "precio": 18300,
+    "imagen": "https://piaachigaritba.github.io/img_muebleria/img/Escritorio%20Costa.png"
+  },
+  {
+    "id": 12,
+    "nombre": "Silla de Trabajo Belgrano",
+    "descripcion": "Silla ergonómica regulable con respaldo de malla y asiento en tejido reciclado",
+    "precio": 8750,
+    "imagen": "https://piaachigaritba.github.io/img_muebleria/img/Silla%20de%20Trabajo%20Belgrano.png"
+  }
+
+]

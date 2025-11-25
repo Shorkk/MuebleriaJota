@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mueblería Hermanos Jota</title>
+
+    <!-- 🎨 Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- 📄 Estilos principales -->
+    <link rel="stylesheet" href="../css/index.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header>
+      <nav class="navbar">
+        <img src="https://piaachigaritba.github.io/img_muebleria/img/logo.svg" alt="Logo Hermanos Jota" class="logo"/>
+        <ul>
+          <li><a href="index.html" class="active">Inicio</a></li>
+          <li><a href="productos.html">Catálogo</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="carrito.html">🛒<i class="fa-solid fa-cart-shopping"></i><span id="texto-carrito">Carrito</span></a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+      <div class="hero__content">
+        <h1 class="hero__title">
+          Muebles de diseño para redescubrir el arte de vivir
+        </h1>
+        <p class="hero__subtitle">
+          Calidad artesanal con un estilo contemporáneo
+        </p>
+        <a href="productos.html" class="btn btn--primary">Ver catálogo</a>
+      </div>
+    </section>
+
+    <!-- Productos Destacados -->
+    <main>
+      <section class="featured">
+        <h2 class="featured__title">Productos Destacados</h2>
+        <div class="featured__grid">
+          <!-- Producto 1 -->
+          <article class="product-card">
+            <img
+              src="https://piaachigaritba.github.io/img_muebleria/img/Aparador%20Uspallata.png"
+              alt="Aparador Uspallata"
+              class="product-card__img"
+            />
+            <h3 class="product-card__title">Aparador Uspallata</h3>
+            <p class="product-card__price">$120.000</p>
+            <button class="btn btn--add">Añadir al carrito</button>
+          </article>
+
+          <!-- Producto 2 -->
+          <article class="product-card">
+            <img
+              src="https://piaachigaritba.github.io/img_muebleria/img/Mesa%20de%20Centro%20Araucaria.png"
+              alt="Mesa de Centro Araucaria"
+              class="product-card__img"
+            />
+            <h3 class="product-card__title">Mesa de Centro Araucaria</h3>
+            <p class="product-card__price">$95.000</p>
+            <button class="btn btn--add">Añadir al carrito</button>
+          </article>
+
+          <!-- Producto 3 -->
+          <article class="product-card">
+            <img
+              src="https://piaachigaritba.github.io/img_muebleria/img/Silla%20de%20Trabajo%20Belgrano.png"
+              alt="Silla de Trabajo Belgrano"
+              class="product-card__img"
+            />
+            <h3 class="product-card__title">Silla de Trabajo Belgrano</h3>
+            <p class="product-card__price">$75.000</p>
+            <button class="btn btn--add">Añadir al carrito</button>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer__info">
+        <p>&copy; 2025 Hermanos Jota - Todos los derechos reservados</p>
+        <p>
+          Contacto:
+          <a href="mailto:brand@hermanosjota.com">brand@hermanosjota.com</a>
+        </p>
+      </div>
+      <div class="footer__social">
+        <a href="#">Instagram</a> | <a href="#">Facebook</a>
+      </div>
+    </footer>
+
+    <script src="productos.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
