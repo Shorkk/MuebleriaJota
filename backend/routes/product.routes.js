@@ -1,7 +1,8 @@
 const express = require('express');
 const createError = require('http-errors');
+const router = require('./order.routes');
 
-const productosRouter = express.Router();
+const router = express.Router();
 
 const productos = [
     {
@@ -162,11 +163,11 @@ const productos = [
     },
 ];
 
-productosRouter.get('/', (req, res) => {
+router.get('/', (req, res) => {
     res.json(productos);
 });
 
-productosRouter.get('/:id', (req, res, next) => {
+router.get('/:id', (req, res, next) => {
     const id = req.params.id;
     const producto = productos.find(p => p.id === id);
 
@@ -177,4 +178,4 @@ productosRouter.get('/:id', (req, res, next) => {
     }
 });
 
-module.exports = { productosRouter };
+module.exports = router

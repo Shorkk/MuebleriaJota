@@ -1,12 +1,12 @@
 const express = require("express")
-const infoRouter = express.Router()
+const router = express.Router()
 
-infoRouter.get("/",(req,res)=>{
+router.get("/",(req,res)=>{
     res.send("Bienvenidos a API Productos!!")
 })
 
 // Ruta para ver las rutas disponibles - swagger (documentar)
-infoRouter.get('/info', (req, res) => {
+router.get('/info', (req, res) => {
   res.send(`
     <h2>Rutas disponibles:</h2>
     <ul>
@@ -16,4 +16,4 @@ infoRouter.get('/info', (req, res) => {
   `)
 })
 
-module.exports = {infoRouter}
+module.exports = router
