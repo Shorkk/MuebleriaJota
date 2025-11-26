@@ -17,7 +17,7 @@ const {userActual} = useAppContext()
           <p><strong>Rol:</strong> {userActual.user.role}</p>
         </div>
       ) : (
-        <p>Loguéate para ver tu Perfil...</p>
+        <p>Loguéate para ver tu perfil...</p>
       )}
     </>
   );

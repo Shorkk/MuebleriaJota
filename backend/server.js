@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000
 
 const { loggerMiddleware } = require("./middlewares/logger")
 const { infoRouter } = require("./routes/info")
-const { productosRouter } = require("./routes/productos")
+const { productosRouter } = require("./routes/productos.routes")
 const userRoutes = require("./routes/user.routes")
 const authRoutes = require('./routes/auth.routes')
 const cors = require("cors")
@@ -16,9 +16,9 @@ app.use(cors())
 app.use(loggerMiddleware)
 app.use(express.json());
 app.use("/", infoRouter)
-app.use("/api/productos", productosRouter)
 app.use('/api/auth', authRoutes)
 app.use('/api/users', userRoutes);
+app.use("/api/productos", productosRouter)
 
 // Rutas no definidas
 app.use((req, res, next) => {

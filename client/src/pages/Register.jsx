@@ -1,9 +1,8 @@
-// src/components/CrearUser.jsx
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-// import { useAppContext } from "../context/AppContext";
-// import { toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { useAppContext } from "../context/AppContext";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const initialValues = {
@@ -40,12 +39,12 @@ const Register = () => {
 
       const data = await response.json();
       console.log(data);
-    //   toast.success("Usuario creado con éxito!");
+      toast.success("Usuario creado con éxito!");
       resetForm();
       //redirigir al usuario
     } catch (error) {
       console.log(`Error en el registro: ${error.message}`);
-      // toast.error("No se pudo crear el usuario :(");
+      toast.error("No se pudo crear el usuario :(");
     }
   };
 
