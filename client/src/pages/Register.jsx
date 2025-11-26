@@ -1,8 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useAppContext } from "../context/AppContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const initialValues = {
@@ -23,6 +23,8 @@ const Register = () => {
     roles: Yup.string().min(1, "Selecciona un rol"),
   });
 
+  const navegar = useNavigate()
+
   const handleSubmit = async (values, { resetForm }) => {
 
     try {
@@ -41,7 +43,9 @@ const Register = () => {
       console.log(data);
       toast.success("Usuario creado con éxito!");
       resetForm();
-      //redirigir al usuario
+        setTimeout(() => {
+            navegar("/login") // Redirigir al usuario a la página Login 2seg después del registro exitoso
+        }, 2000)
     } catch (error) {
       console.log(`Error en el registro: ${error.message}`);
       toast.error("No se pudo crear el usuario :(");

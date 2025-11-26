@@ -4,7 +4,7 @@ import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import * as Yup from "yup"
 import { useAuthContext } from "../context/AuthContext"
-import { NavLink, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 
 const Login = () => {
