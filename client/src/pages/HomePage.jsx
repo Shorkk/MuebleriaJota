@@ -1,12 +1,12 @@
 import React from 'react'
-import Card from "../components/Card" 
+import Catalogo from "../components/Catalogo.jsx" 
  
 const HomePage = () => {
   return (
     <>
       <h1>Página de Inicio</h1>
       <p>¡Bienvenido a nuestra increíble aplicación!</p>
-      <Card/>
+      <Catalogo/>
     </>
   )
 }
