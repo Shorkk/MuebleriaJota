@@ -19,7 +19,7 @@ exports.crearPedido = async (req, res) => {
     }
 
     const nuevoPedido = new Pedido({
-        userId: UserId,
+        userId: userId,
         items,
         total,
         estado: estado || 'pendiente'
@@ -48,8 +48,8 @@ exports.obtenerPedidosUsuario = async (req, res) => {
 
 exports.obtenerUnPedidoDeUnUsuario = async (req, res) => {
     try {
-        const userId = req.user.userId
-        const pedido = await Pedido.findOne({_id: req.params.id, userId}).populate('items.productId')
+        const userId = req.user._id
+        const pedido = await Pedido.findOne({_id: req.params.pedidoId, userId}).populate('items.productId')
         if (!pedido) return res.status(404).json({message: 'Pedido no encontrado para este usuario.'})
         res.json(pedido)
     } catch (error) {

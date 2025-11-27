@@ -1,6 +1,5 @@
 const express = require('express');
 const createError = require('http-errors');
-const router = require('./order.routes');
 
 const router = express.Router();
 
