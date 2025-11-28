@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../styles/contacto.css";
-import {Formik, Form, Field, ErrorMessage} from 'Formik';
+// import {Formik, Form, Field, ErrorMessage} from 'Formik';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({

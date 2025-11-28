@@ -1,16 +1,22 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+// import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useState } from "react";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const initialValues = {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
     nombre: "",
     email: "",
     password: "",
     role: "",
-  };
+  });
+
+  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
 
   const validationSchema = Yup.object({
     nombre: Yup.string().required("El nombre es obligatorio"),
@@ -20,77 +26,123 @@ const Register = () => {
     password: Yup.string()
       .min(8, "Mínimo 8 caracteres")
       .required("La contraseña es obligatoria"),
-    roles: Yup.string().min(1, "Selecciona un rol"),
+    role: Yup.string().required("Selecciona un rol"),
   });
 
-  const navegar = useNavigate()
+  const validateForm = async () => {
+    try {
+      await validationSchema.validate(formData, { abortEarly: false });
+      return {};
+    } catch (validationErrors) {
+      const formattedErrors = {};
+      validationErrors.inner.forEach((err) => {
+        formattedErrors[err.path] = err.message;
+      });
+      return formattedErrors;
+    }
+  };
 
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+    const validationErrors = await validateForm();
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length > 0) {
+      setSubmitting(false);
+      return;
+    }
 
     try {
-      const response = await fetch("http://localhost:3000/api/auth/register", { // Apunta al endpoint de backend
+      const response = await fetch("http://localhost:3000/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values), // values contiene { nombre, email, password, role }
+        body: JSON.stringify(formData),
       });
 
-      if (!response.ok) { // Manejar errores del servidor (ej: usuario ya existe)
+      if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message);
       }
 
-      const data = await response.json();
-      console.log(data);
       toast.success("Usuario creado con éxito!");
-      resetForm();
-        setTimeout(() => {
-            navegar("/login") // Redirigir al usuario a la página Login 2seg después del registro exitoso
-        }, 2000)
+
+      // Reset form
+      setFormData({
+        nombre: "",
+        email: "",
+        password: "",
+        role: "",
+      });
+
+      navigate("/login");
+
     } catch (error) {
-      console.log(`Error en el registro: ${error.message}`);
+      console.error("Error en el registro:", error.message);
       toast.error("No se pudo crear el usuario :(");
     }
+
+    setSubmitting(false);
   };
 
   return (
     <>
       <h2>Crear Usuario</h2>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ isSubmitting }) => (
-          <Form>
-            <div>
-              <Field name="nombre" placeholder="Nombre" />
-              <ErrorMessage name="nombre" component="div" className="error" />
-            </div>
 
-            <div>
-              <Field name="email" placeholder="Email" />
-              <ErrorMessage name="email" component="div" className="error" />
-            </div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <input
+            name="nombre"
+            placeholder="Nombre"
+            value={formData.nombre}
+            onChange={handleChange}
+          />
+          {errors.nombre && <div className="error">{errors.nombre}</div>}
+        </div>
 
-            <div>
-              <Field name="password" type="password" placeholder="Password" />
-              <ErrorMessage name="password" component="div" className="error" />
-            </div>
+        <div>
+          <input
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          {errors.email && <div className="error">{errors.email}</div>}
+        </div>
 
-            <label>Tipo de Usuario:</label>
-            <Field as="select" name="role">
-              <option value="" disabled>Seleccionar tipo</option>
-              <option value="admin">Admin</option>
-              <option value="usuario">Común</option>
-            </Field>
-            <ErrorMessage name="role" component="div" />
+        <div>
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          {errors.password && <div className="error">{errors.password}</div>}
+        </div>
 
-            <button type="submit" disabled={isSubmitting}>
-              Registrarme
-            </button>
-          </Form>
-        )}
-      </Formik>
+        <label>Tipo de Usuario:</label>
+        <select name="role" value={formData.role} onChange={handleChange}>
+          <option value="" disabled>
+            Seleccionar tipo
+          </option>
+          <option value="admin">Admin</option>
+          <option value="usuario">Común</option>
+        </select>
+        {errors.role && <div className="error">{errors.role}</div>}
+
+        <button type="submit" disabled={submitting}>
+          Registrarme
+        </button>
+      </form>
     </>
   );
 };

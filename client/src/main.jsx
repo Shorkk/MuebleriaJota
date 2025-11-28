@@ -3,15 +3,19 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
-import { AppProvider } from './context/AppContext.js'
-import { AuthProvider } from './context/AuthContext.js'
+import { AppProvider } from './context/AppProvider.jsx'
+import { AuthProvider } from './context/AuthProvider.jsx'
+import { CartProvider } from './context/CartProvider.jsx'
 
 createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <AuthProvider>
-      <AppProvider>
-        <App />
-      </AppProvider>
-    </AuthProvider>
-  </BrowserRouter>
+
+  <AuthProvider>
+    <AppProvider>
+      <CartProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </CartProvider>
+    </AppProvider>
+  </AuthProvider>
 );
