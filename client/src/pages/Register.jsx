@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:3000";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -62,7 +63,7 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/api/auth/register", {
+      const response = await fetch(`${BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
