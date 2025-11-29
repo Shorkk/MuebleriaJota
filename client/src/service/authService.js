@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 // Registro de usuario
 export const registerUser = async (userData) => {

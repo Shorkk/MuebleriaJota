@@ -1,6 +1,6 @@
 import axios from "axios";
 import { object } from "yup";
-const API_URL = "http://localhost:5000/api/orders/";
+const API_URL = import.meta.env.VITE_BASE_URL + "/orders";
 
 export const crearPedido = async (object, token) => {
   try {

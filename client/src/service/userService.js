@@ -30,11 +30,11 @@ export async function PerfilUsuario(token) { // con auth, me retorna el perfil d
           return;
         }
 
-        const response = await fetch("http://localhost:3002/api/users/profile", {
+        const response = await fetch(`${BASE_URL}/users/profile`, {
           method: "GET",
           headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`, //  Aquí enviamos el token
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
           },
         })
 
