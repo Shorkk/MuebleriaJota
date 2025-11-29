@@ -5,7 +5,7 @@ const createError = require("http-errors");
 require('dotenv').config();
 const PORT = process.env.PORT || 3000
 
-const { loggerMiddleware } = require("./middlewares/logger")
+const loggerMiddleware = require("./middlewares/logger")
 const infoRouter = require("./routes/info")
 const productoRouter = require("./routes/product.routes")
 const pedidoRouter = require("./routes/order.routes")
