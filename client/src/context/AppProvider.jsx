@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { fetchUsers, createUser, PerfilUsuario} from "../service/usersService";
+import { fetchUsers, createUser, PerfilUsuario} from "../service/userService";
 // import { fetchProductos } from "../services/productService;
 import { useAuthContext } from "./AuthContext";
 import { AppContext } from "./AppContext";
