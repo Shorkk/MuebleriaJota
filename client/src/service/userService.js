@@ -1,20 +1,20 @@
 const BASE_URL = import.meta.env.VITE_BASE_URL
 
 export async function fetchUsers() { // Me retorna todo los usuarios
-  const res = await fetch(`${BASE_URL}/users`);
+  const res = await fetch(`${BASE_URL}/api/users`);
 
   if (!res.ok) throw new Error('Error al obtener los usuarios');
   return res.json();
 }
 
 export async function fetchUsersPorId(id) { // Me retorna 1 usuario
-  const res = await fetch(`${BASE_URL}/users/${id}`);
+  const res = await fetch(`${BASE_URL}/api/users/${id}`);
   if (!res.ok) throw new Error('Usuario no encontrado');
   return res.json();
 }
 
 export async function crearUser(data) { // Me retorna el usuario creado
-  const res = await fetch(`${BASE_URL}/users/register`, {
+  const res = await fetch(`${BASE_URL}/api/users/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
@@ -30,19 +30,13 @@ export async function PerfilUsuario(token) { // con auth, me retorna el perfil d
           return;
         }
 
-        const response = await fetch(`${BASE_URL}/users/profile`, {
+        const response = await fetch(`${BASE_URL}/api/users/profile`, {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
           },
         })
-
-        // const response = await fetch(`${BASE_URL}/profile`, {
-        //   method: 'GET',
-        //   headers: getAuthHeaders(), // usamos la función del contexto
-        // });
-
 
         if (!response.ok) {
           const error = await response.json();
