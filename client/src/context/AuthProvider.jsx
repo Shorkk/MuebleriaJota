@@ -56,28 +56,38 @@ export const AuthProvider = ({ children }) => {
   }, [token]);
 
   const login = async (credentials) => {
-    try {
-      const { token } = await loginUser(credentials);
+  try {
+    // Limpia token viejo ANTES de intentar loguear
+    setToken(null);
+    setUser(null);
+    setIsAdmin(false);
+    setIsAuthenticated(false);
+    localStorage.removeItem("token");
 
-      if (!token) {
-        console.error("Token inválido en login");
-        return;
-      }
+    const { token } = await loginUser(credentials);
 
-      const userData = decodeToken(token);
+    if (!token) {
+      console.error("Token inválido en login");
+      return;
+    }
 
-      if (userData) {
-        setToken(token);
-        localStorage.setItem("token", token);
-        setUser(userData);
-        setIsAdmin(userData.role === "admin");
-        setIsAuthenticated(true);
-      } else {
-        console.warn("Token inválido.");
-        setIsAuthenticated(false);
-      }
-    } catch (err) {
-      console.log("Error: ", err.message);
+    const userData = decodeToken(token);
+
+    if (userData) {
+      setToken(token);
+      localStorage.setItem("token", token);
+      setUser(userData);
+      setIsAdmin(userData.role === "admin");
+      setIsAuthenticated(true);
+    } else {
+      console.warn("Token inválido.");
+      setIsAuthenticated(false);
+    }
+  } catch (err) {
+    console.log("Error: ", err.message);
+    // Seguridad extra: borro cualquier token si hubo error
+    localStorage.removeItem("token");
+    setIsAuthenticated(false);
     }
   };
 

@@ -33,7 +33,7 @@ exports.login= async (req, res) => {
   console.log("🔐 logueando...");
   
   if (!email || !password) return res.status(400).json({ error: 'Email y contraseña son requeridos' });
-  
+    
   try {
     const user = await User.findOne({ email }); 
     if (!user) return res.status(400).json({ error: 'Credenciales inválidas' }); 
