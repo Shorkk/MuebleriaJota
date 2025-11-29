@@ -57,13 +57,6 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (credentials) => {
   try {
-    // Limpia token viejo ANTES de intentar loguear
-    setToken(null);
-    setUser(null);
-    setIsAdmin(false);
-    setIsAuthenticated(false);
-    localStorage.removeItem("token");
-
     const { token } = await loginUser(credentials);
 
     if (!token) {
@@ -85,9 +78,6 @@ export const AuthProvider = ({ children }) => {
     }
   } catch (err) {
     console.log("Error: ", err.message);
-    // Seguridad extra: borro cualquier token si hubo error
-    localStorage.removeItem("token");
-    setIsAuthenticated(false);
     }
   };
 
