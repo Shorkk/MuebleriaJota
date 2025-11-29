@@ -9,7 +9,9 @@ export const registerUser = async (userData) => {
   });
 
   const data = await res.json();
-  if (!res.ok) throw new Error(data.message || 'Error al registrar usuario');
+  console.log('authService.registerUser', res.status, data);
+  const errorMsg = data.error || data.message || 'Error al registrar usuario';
+  if (!res.ok) throw new Error(errorMsg);
   return data; // { token , user }
 };
 
