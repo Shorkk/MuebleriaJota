@@ -24,7 +24,7 @@ exports.getUsers = async (req, res) => {
     }
 }
 
-exports.getUsersById = async (req, res) => {
+exports.getUserById = async (req, res) => {
     try {
         const usuario = await User.findById(req.params.id)
         if(!usuario) {

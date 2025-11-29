@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { crearPedido, obtenerPedidosUsuario, obtenerUnPedidoDeUnUsuario } = require('../controllers/order.controller');
-const { verificarToken } = require('../middlewares/authMiddleware');
+const authMiddleware = require('../middlewares/authMiddleware');
 
-router.post('/', verificarToken, crearPedido);
-router.get('/', verificarToken, obtenerPedidosUsuario);
-router.get('/user/:userId/pedido/:pedidoId', verificarToken, obtenerUnPedidoDeUnUsuario);
+router.post('/', authMiddleware, crearPedido);
+router.get('/', authMiddleware, obtenerPedidosUsuario);
+router.get('/user/:userId/pedido/:pedidoId', authMiddleware, obtenerUnPedidoDeUnUsuario);
 
 module.exports = router;
