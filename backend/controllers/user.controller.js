@@ -58,3 +58,10 @@ exports.deleteUser = async (req, res) => {
         res.status(500).json({ message: 'Error al eliminar el usuario' })
     }
 }
+
+exports.getUserProfile = (req, res) => {
+  res.json({ 
+    message: `Bienvenido a tu perfil, ${req.user.nombre}`, 
+    user: req.user 
+  });
+}

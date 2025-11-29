@@ -6,6 +6,7 @@ import { loginUser } from "../service/authService"
 const decodeToken = (token) => {
   try {
     const payload = jwtDecode(token);
+    console.log('decodeToken payload:', payload);
 
     const currentTime = Date.now() / 1000;
 
