@@ -13,7 +13,7 @@ export async function fetchUsersPorId(id) { // Me retorna 1 usuario
   return res.json();
 }
 
-export async function crearUser(data) { // Me retorna el usuario creado
+export async function createUser(data) { // Me retorna el usuario creado
   const res = await fetch(`${BASE_URL}/api/users/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
