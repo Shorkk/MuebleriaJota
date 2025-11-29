@@ -29,10 +29,10 @@ const userSchema = new mongoose.Schema({
 });
 
 // Middleware de mongoose para hashear la contraseña antes de guardar
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
+userSchema.pre('save', async function () {
+  if (!this.isModified('password')) return;
+
   this.password = await bcrypt.hash(this.password, 10);
-  next();
 });
 
 // Método para comparar contraseñas
