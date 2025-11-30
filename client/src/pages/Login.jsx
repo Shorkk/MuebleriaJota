@@ -61,6 +61,8 @@ const Login = () => {
   };
 
   return (
+    <>
+    <h1>LOGIN DE USUARIO</h1>
     <form onSubmit={handleSubmit}>
       <div>
         <input
@@ -74,7 +76,7 @@ const Login = () => {
 
       <div>
         <input
-          type="password"
+          type="text"
           name="password"
           placeholder="Password"
           value={values.password}
@@ -83,9 +85,10 @@ const Login = () => {
       </div>
 
       <button type="submit">
-        Ingresar
+        INGRESAR
       </button>
     </form>
+    </>
   );
 };
 

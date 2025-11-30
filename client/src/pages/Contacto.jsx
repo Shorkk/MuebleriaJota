@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/contacto.css";
+// import "../styles/contacto.css";
 // import {Formik, Form, Field, ErrorMessage} from 'Formik';
 import * as yup from 'yup';
 
@@ -77,12 +77,12 @@ function Contacto() {
 
   return (
     <>
-      <h1 id="titulo-contacto">ENVIAR UNA CONSULTA</h1>
-      <h4 className="subtitulo-contacto">
+      <h1>ENVIAR UNA CONSULTA</h1>
+      <h4>
         Estamos aquí para escucharte y acompañarte, con la misma dedicación con
         la que damos forma a cada pieza.
       </h4>
-      <h4 className="subtitulo-contacto">
+      <h4>
         Compartinos tus dudas o inquietudes aquí abajo y nos pondremos en
         contacto para resolverlas juntos.
       </h4>
@@ -102,7 +102,7 @@ function Contacto() {
         <div>
           <label htmlFor="emailUsuario">CORREO ELECTRÓNICO</label>
           <input
-            type="text"
+            type="email"
             id="emailUsuario"
             name="email"
             value={formData.email}

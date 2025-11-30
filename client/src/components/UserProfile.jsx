@@ -9,15 +9,16 @@ const {userActual} = useAppContext()
 
   return (
     <>
+      <h1>MI PERFIL</h1>
       {userActual && userActual.user ? (
         <div>
           <p>{userActual.message}!</p>
-          <p><strong>Nombre:</strong> {userActual.user.nombre}</p>
-          <p><strong>Email:</strong> {userActual.user.email}</p>
-          <p><strong>Rol:</strong> {userActual.user.role}</p>
+          <h2><strong>Nombre:</strong> {userActual.user.nombre}</h2>
+          <h2><strong>Email:</strong> {userActual.user.email}</h2>
+          <h2><strong>Rol:</strong> {userActual.user.role}</h2>
         </div>
       ) : (
-        <p>Loguéate para ver tu perfil...</p>
+        <h2>Loguéate para ver tu perfil...</h2>
       )}
     </>
   );
