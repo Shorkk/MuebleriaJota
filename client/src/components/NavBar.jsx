@@ -35,6 +35,9 @@ const NavBar = () => {
                 <li>
                     <NavLink to="/contacto" className={isActive("/contacto") ? "active" : ""}>Contacto</NavLink>
                 </li>
+                <li>
+                    <NavLink to="/cart" classname={isActive("/cart")? "active": ""}></NavLink>
+                </li>
 
                 {isAuthenticated ? (
                     <>
