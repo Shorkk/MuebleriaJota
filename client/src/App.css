@@ -1,21 +1,44 @@
-#root {
-  max-width: 1280px;
+* {
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 0;
+  box-sizing: border-box; /* border-box: el width y height incluyen contenido + padding + border. */
+}
+
+:root {
+  /* 🎨 Colores Hermanos Jota */
+  --color-sienna: #a0522d;
+  --color-salvia: #87a96b;
+  --color-alabastro: #f5e6d3;
+  --color-oro: #d4a437;
+  --color-rosa: #c47a6d;
+  --color-darkwood: #3e2723;
+  --color-grey: #f5f5f5;
+
+  /* 🖋️ Tipografías */
+  --font-body: "Inter", sans-serif;
+  --font-titles: "Playfair Display", georgia;
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 400;
+  --font-weight-bold: 700;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
+  width: 45px;
+  height: 45px;
+  margin: 10px;
+  background-color: var(--color-grey);
+  border-radius: 12px;
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em var(--color-sienna));
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em var(--color-sienna));
 }
 
 @keyframes logo-spin {
@@ -33,10 +56,224 @@
   }
 }
 
-.card {
-  padding: 2em;
-}
-
 .read-the-docs {
   color: #888;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-alabastro);
+  color: var(--color-darkwood);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+header {
+    width: 100%;
+    background-color: var(--color-sienna);
+}
+
+.navbar {
+    max-width: 100%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar ul {
+    flex: 4;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 10px;
+    font-weight: var(--font-weight-bold);
+}
+.navbar ul li {
+  align-self: center;
+}
+a {
+    text-decoration: none;
+    color: var(--color-grey);
+    transition: transform 0.1s ease;
+    display: inline-block;
+}
+
+header .navbar ul li a:hover {
+    color: var(--color-alabastro);
+    transform: scale(1.2);
+}
+
+.active {
+    text-decoration: underline;
+}
+
+h1 {
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: var(--font-titles);
+  font-size: 30pt;
+  font-weight: var(--font-weight-bold);
+  margin-top: 50px;
+  margin-bottom: 10px;
+  letter-spacing: 0.1em;
+}
+
+h2 {
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: var(--font-titles);
+  font-size: 15pt;
+  font-weight: var(--font-weight-bold);
+  margin-top: 50px;
+  margin-bottom: 10px;
+  letter-spacing: 0.1em;
+}
+
+h4 {
+  text-align: center;
+  justify-content: center;
+  font-size: 12pt;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.6;
+  margin: 0px 30px 0px 30px
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 40px;
+  font-weight: var(--font-weight-regular);
+}
+
+form label {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  font-size: 9pt;
+  margin-bottom: 8px;
+  width: 350px;
+  max-width: 90%;
+  letter-spacing: 0.02em;
+}
+
+form label::after {
+  content: "*";
+  font-size: 15pt;
+  margin-left: 2px;
+  color: #d1363a;
+  line-height: 4px;
+}
+
+input[type="text"], input[type="email"], textarea {
+  font-family: var(--font-body);
+  width: 100%;
+  padding: 16px 12px;
+  font-size: 12pt;
+  border: 1px solid #000000;
+  resize: vertical;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  border-radius: 10px;
+  background-color: var(--color-grey);
+  color: var(--color-darkwood)
+}
+
+select {
+  font-family: var(--font-body);
+  width: 40%;
+  padding: 16px 12px;
+  font-size: 12pt;
+  border: 1px solid #000000;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  border-radius: 10px;
+  background-color: var(--color-grey);
+  color: var(--color-darkwood)
+}
+
+select option {
+  font-family: var(--font-body);
+  padding: 16px 12px;
+  font-size: 12pt;
+  border: 1px solid #000000;
+  line-height: 1.6;
+  background-color: var(--color-grey);
+  color: var(--color-darkwood)
+}
+
+button {
+  background-color:  var(--color-salvia);
+  border-color:  var(--color-salvia);
+  color: var(--color-grey);
+  padding: 12px 48px;
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.08em;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: var(--color-oro);
+}
+
+#productos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  width: 300px;
+  margin: 20px;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px;
+  text-align: center;
+}
+.card h2 {
+  font-family: "Inter", sans-serif;
+  color: #a0522d;
+  margin-bottom: 10px;
+}
+
+.card img{
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+footer {
+  background-color: var(--color-sienna);
+  color: var(--color-grey);
+  padding: 20px 0;
+  text-align: center;
+  margin-top: 60px;
+}
+
+footer p {
+  margin: 10px;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(0.5); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Media Query para pantallas más grandes (el breakpoint es 768px) */
+@media (min-width: 768px) {
+  .logo {
+    margin: 10px; 
+  }
+  form label {
+    width: 500px;    
+    max-width: none;
+  }
 }

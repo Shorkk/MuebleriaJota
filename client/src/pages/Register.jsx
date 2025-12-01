@@ -96,11 +96,12 @@ const Register = () => {
 
   return (
     <>
-      <h2>Crear Usuario</h2>
+      <h1>CREAR USUARIO</h1>
 
       <form onSubmit={handleSubmit}>
         <div>
           <input
+            type="text"
             name="nombre"
             placeholder="Nombre"
             value={formData.nombre}
@@ -111,6 +112,7 @@ const Register = () => {
 
         <div>
           <input
+            type="email"
             name="email"
             placeholder="Email"
             value={formData.email}
@@ -122,7 +124,7 @@ const Register = () => {
         <div>
           <input
             name="password"
-            type="password"
+            type="text"
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
@@ -130,7 +132,7 @@ const Register = () => {
           {errors.password && <div className="error">{errors.password}</div>}
         </div>
 
-        <label>Tipo de Usuario:</label>
+        <h4>Tipo de Usuario:</h4>
         <select name="role" value={formData.role} onChange={handleChange}>
           <option value="" disabled>
             Seleccionar tipo
@@ -141,7 +143,7 @@ const Register = () => {
         {errors.role && <div className="error">{errors.role}</div>}
 
         <button type="submit" disabled={submitting}>
-          Registrarme
+          REGISTRARME
         </button>
       </form>
     </>
