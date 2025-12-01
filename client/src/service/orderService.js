@@ -1,10 +1,10 @@
 import axios from "axios";
 import { object } from "yup";
-const API_URL = import.meta.env.VITE_BASE_URL + "/orders";
+const API_URL = import.meta.env.VITE_BASE_URL;
 
 export const crearPedido = async (object, token) => {
   try {
-    const response = await axios.post(API_URL, object, {
+    const response = await axios.post(`${API_URL}/api/orders`, object, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -17,7 +17,7 @@ export const crearPedido = async (object, token) => {
 
 export const obtenerPedidosDelUser = async (token) => {
     try {
-        const response = await axios.get(API_URL, {
+        const response = await axios.get(`${API_URL}/api/orders`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

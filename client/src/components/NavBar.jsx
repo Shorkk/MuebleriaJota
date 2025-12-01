@@ -7,7 +7,7 @@ import { useCartContext } from "../context/CartContext";
 const NavBar = () => {
     const location = useLocation();
     const { isAuthenticated, logout } = useAuthContext();
-    const { carrito } = useCartContext();
+    const { cartItems } = useCartContext();
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -35,26 +35,22 @@ const NavBar = () => {
                 <li>
                     <NavLink to="/contacto" className={isActive("/contacto") ? "active" : ""}>Contacto</NavLink>
                 </li>
-                <li>
-                    <NavLink to="/cart" classname={isActive("/cart")? "active": ""}></NavLink>
-                </li>
-
                 {isAuthenticated ? (
                     <>
                         <li>
-                            <NavLink to="/carrito" className="carrito-link">
+                            <NavLink to="/cart" className="carrito-link">
                                 <FaCartPlus id="texto-carrito" className="carrito" />
                                 <span
-                                    className="cart-count logeado"
+                                    className="cart-count"
                                     id="contador-carrito"
-                                >{carrito?.length || 0}</span>
+                                >{cartItems?.length || 0}</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/my-profile" className={isActive("/my-profile") ? "active" : ""}>Mi Perfil</NavLink>
                         </li>
                         <li>
-                            <p className="navbar-logout" onClick={handleLogout}>Logout</p>
+                            <p onClick={handleLogout}>Logout</p>
                         </li>
                     </>
                 ) : (
@@ -73,32 +69,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
-//   return (
-//       <nav className="navbar">
-//       (
-//         <>
-//         <ul>
-//           <li><Link to="/">Home</Link></li>
-//           <li><Link to="/register">Crear usuarios</Link></li>
-//           <li> <button onClick={handleLogout}>Logout</button></li>
-//         </ul>
-//           <span>Hola {user.nombre}!</span>
-         
-//         </>
-//       ) : (
-//         <>
-//         <ul>
-//           <li><Link to="/">Home</Link></li>
-//           <li><Link to="/register">Crear Usuarios</Link></li>
-//           <li><Link to="/login">Login</Link></li>
-//           <li><Link to="/catalog">Catálogo</Link></li>
-//           <li><Link to="/cart">Carrito</Link></li>
-//           <li><Link to="/contact">Contacto</Link></li>
-//         </ul>
-          
-//         </>
-//       )}
-//     </nav>
-//   );
-// };

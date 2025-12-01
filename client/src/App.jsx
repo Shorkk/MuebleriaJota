@@ -12,7 +12,6 @@ import Register from "./pages/Register"
 import Login from "./pages/Login"
 import CartPage from "./pages/CartPage.jsx"
 import Detalle from "./pages/Detalle.jsx"
-
 import UserProfile from "./components/UserProfile.jsx"
 import NavBar from './components/NavBar.jsx'
 import Catalogo from "./pages/Catalogo.jsx"
@@ -40,7 +39,7 @@ function App() {
           <Route path="/my-profile" element={<UserProfile />} />
           <Route path="/catalogo" element={<Catalogo />} />
           <Route path="/contacto" element={<Contacto />} />
-          <Route path="/producto/:id" element={<Detalle />} />
+          <Route path="/productos/:id" element={<Detalle />} />
         </Routes>
       </main>
 
@@ -48,12 +47,12 @@ function App() {
         <div className="footer__info">
           <p>&copy; 2025 Hermanos Jota - Todos los derechos reservados</p>
           <p>
-            Contacto:
+            Contacto: &nbsp;
             <a href="mailto:brand@hermanosjota.com">brand@hermanosjota.com</a>
           </p>
         </div>
         <div className="footer__social">
-          <a href="#">Instagram</a> | <a href="#">Facebook</a>
+          <a href="https://alt-5a31a0302d72d.blackboard.com/bbcswebdav/pid-982156-dt-content-rid-14612411_1/courses/FSD.00-43441/Instagram%20copy/index.html?one_hash=2F9A1B7D78F2DEE99BB170C96701DF2B&f_hash=F0EB956E58F686DFC52EDA8E5BB9FA83">Instagram</a>
         </div>
       </footer>
             <ToastContainer />

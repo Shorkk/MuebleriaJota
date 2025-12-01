@@ -14,7 +14,7 @@ export async function fetchProductoPorId(id) { // Me retorna 1 producto
 }
 
 export async function createProducto(data) { // Me retorna el producto creado
-  const res = await fetch(`${BASE_URL}/api/producto/register`, {
+  const res = await fetch(`${BASE_URL}/api/producto`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
@@ -32,16 +32,15 @@ export async function DetalleProducto(id) {
           },
         })
 
-        if (!response.ok) {
-          const error = response.json();
-          throw new Error("No se pudo acceder al producto. Error:",error);
-        }
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error("No se pudo acceder al producto. Error: " + (error.message || response.status));
+    }
 
-        const data = await response.json();
-        console.log(data)
-        return data //  Devuelvo la data
-      } catch (error) {
-        console.error("Error al obtener producto:", error.message);
-      }
-    
+    const data = await response.json();
+    return data //  Devuelvo la data
+  } catch (error) {
+    console.error("Error al obtener producto:", error.message || error);
+    throw error;
+  }
 }

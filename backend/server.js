@@ -20,8 +20,8 @@ app.use(express.json())
 app.use("/", infoRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/users', userRouter)
-app.use('/api/pedidos', pedidoRouter)
-app.use("/api/producto", productoRouter)
+app.use('/api/orders', pedidoRouter)
+app.use("/api/productos", productoRouter)
 
 // Rutas no definidas
 app.use((req, res, next) => {

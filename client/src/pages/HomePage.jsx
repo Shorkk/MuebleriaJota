@@ -8,6 +8,7 @@ const HomePage = () => {
       <h1>MUEBLERÍA JOTA</h1>
       <h4>¡Bienvenido a nuestra increíble aplicación!</h4>
       <h2>¡Productos Destacados del día!</h2>
+      <div className="productos-grid">
           <div className="card">
             <img
               src="https://raw.githubusercontent.com/PiaAchigarITBA/img_muebleria/master/img/aparador_uspallata.png"
@@ -15,8 +16,8 @@ const HomePage = () => {
               className="product-card__img"
             />
             <h3>Aparador Uspallata</h3>
-            <p><s>$160.000</s></p>
-            <p><strong>$120.000</strong></p>
+            <p><s>$28000</s></p>
+            <p><strong>$18000</strong></p>
           </div>
           <div className="card">
             <img
@@ -25,9 +26,10 @@ const HomePage = () => {
               className="product-card__img"
             />
             <h3>Mesa de Centro Araucaria</h3>
-            <p><s>$130.000</s></p>
-            <p><strong>$95.000</strong></p>
+            <p><s>$30000</s></p>
+            <p><strong>$22000</strong></p>
           </div>
+      </div>
     </>
   )
 }

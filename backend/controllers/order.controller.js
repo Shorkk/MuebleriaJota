@@ -1,21 +1,34 @@
 const Pedido = require('../models/order.model')
 const Product = require('../models/product.model')
+const mongoose = require('mongoose')
 
 exports.crearPedido = async (req, res) => {
     try {
-        const userId = req.user.userId
+        const userId = req.user?._id || req.user?.id || req.user?.userId
         const {items, estado} = req.body
+        console.log('crearPedido request by user:', userId)
+        console.log('Payload items:', JSON.stringify(items))
+        // Validaciones básicas
+        if (!Array.isArray(items)) return res.status(400).json({ message: 'Items debe ser un arreglo.' })
+        if (items.length === 0) return res.status(400).json({ message: 'El pedido está vacío.' })
         if (!items || items.length === 0) {
             return res.status(400).json({message: 'El pedido está vacío.'})
         }
 
     let total = 0
     for (const item of items) {
+        if (!item.productId) return res.status(400).json({ message: 'Cada item debe tener productId.' })
+        if (!mongoose.Types.ObjectId.isValid(item.productId)) {
+            return res.status(400).json({ message: `productId inválido: ${item.productId}` })
+        }
+        const cantidad = Number(item.cantidad) || 0
+        if (cantidad <= 0) return res.status(400).json({ message: `Cantidad inválida para productId ${item.productId}` })
         const product = await Product.findById(item.productId)
         if (!product) {
             return res.status(404).json({message: `Producto con ID ${item.productId} no encontrado.`})
         }
-        total += product.precio * item.cantidad
+        total += product.precio * cantidad
+        item.cantidad = cantidad
     }
 
     const nuevoPedido = new Pedido({
@@ -36,7 +49,7 @@ exports.crearPedido = async (req, res) => {
 
 exports.obtenerPedidosUsuario = async (req, res) => {
     try {
-        const userId = req.user.userId
+        const userId = req.user?._id || req.user?.id || req.user?.userId
         const pedidos = await Pedido.find({userId}).populate('items.productId')
         if (!pedidos || pedidos.length === 0) return res.status(404).json({message: 'No se encontraron pedidos para este usuario.'})
         res.json(pedidos)

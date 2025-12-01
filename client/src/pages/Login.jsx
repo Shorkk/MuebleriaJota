@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import { useAuthContext } from "../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Login = () => {
   const { login } = useAuthContext();
@@ -88,6 +89,9 @@ const Login = () => {
         INGRESAR
       </button>
     </form>
+    <br></br>
+    <h4>¿No tienes una cuenta?</h4>
+    <h4 className="register-link"> <NavLink to="/register">Regístrate aquí</NavLink></h4>
     </>
   );
 };

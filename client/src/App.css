@@ -1,5 +1,14 @@
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 * {
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
   box-sizing: border-box; /* border-box: el width y height incluyen contenido + padding + border. */
 }
@@ -60,12 +69,17 @@
   color: #888;
 }
 
+main {
+  flex: 1;
+}
+
 body {
   font-family: var(--font-body);
   background-color: var(--color-alabastro);
   color: var(--color-darkwood);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 header {
@@ -78,6 +92,7 @@ header {
     display:flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
 }
 
 .navbar ul {
@@ -138,6 +153,18 @@ h4 {
   font-weight: var(--font-weight-regular);
   line-height: 1.6;
   margin: 0px 30px 0px 30px
+}
+
+.cart-summary {
+  text-align: center;
+  justify-content: center;
+  font-size: 14pt;
+  font-weight: var(--font-weight-medium);
+  margin: 20px 0px 20px 0px;
+}
+
+.cart-summary button {
+  margin: 10px;
 }
 
 form {
@@ -223,7 +250,20 @@ button:hover {
   background-color: var(--color-oro);
 }
 
-#productos-grid {
+.button_return {
+  margin: 30px 30px 0px 30px;
+}
+
+.button_add_cart {
+  display: block;
+  margin: 0 auto;
+}
+
+.button_order {
+  margin: 30px 30px 0px 30px;
+}
+
+.productos-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -250,12 +290,39 @@ button:hover {
   margin-bottom: 10px;
 }
 
+.card span {
+  margin: 0 10px;
+  font-size: 16px;
+}
+
+.product-details {
+  margin: 0 80px 20px 80px;
+}
+
+.product-details img {
+  max-width: 40%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.register-link a {
+    color: var(--color-sienna);
+    font-weight: var(--font-weight-bold);
+    text-decoration: underline;
+}
+
+.register-link a:hover {
+    color: var(--color-oro);
+}
+
 footer {
   background-color: var(--color-sienna);
   color: var(--color-grey);
-  padding: 20px 0;
   text-align: center;
-  margin-top: 60px;
+  padding: 10px;
+  margin-top: 30px;
 }
 
 footer p {

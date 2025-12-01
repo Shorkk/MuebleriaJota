@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { fetchUsers, createUser, PerfilUsuario} from "../service/userService";
-// import { fetchProductos } from "../services/productService;
+import { fetchProducts } from "../service/productService"
 import { useAuthContext } from "./AuthContext";
 import { AppContext } from "./AppContext";
 
@@ -9,20 +9,21 @@ export const AppProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [userActual, setUserActual] = useState()
   const {isAuthenticated, token} = useAuthContext()
-  // const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+  const [products, setProducts] = useState([]);
 
-  // const cargarProductos = useCallback(async () => {
-  //   try {
-  //     const data = await fetchProductos();
-  //     setProductos(data);
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // }, []);
+  const cargarProductos = useCallback(async () => {
+    try {
+      const data = await fetchProducts();
+      setProducts(data);
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   cargarProductos();
-  // }, [cargarProductos]);
+  useEffect(() => {
+    cargarProductos();
+  }, [cargarProductos]);
 
   useEffect(() => {
     cargarUsers();
@@ -36,7 +37,7 @@ export const AppProvider = ({ children }) => {
   const cargarUsers = async () => {
     try {
       const data = await fetchUsers();
-      // console.log(data)
+      console.log(data)
       setUsers(data);
     } catch (e) {
       console.error(e);
@@ -50,7 +51,7 @@ export const AppProvider = ({ children }) => {
   };
 
   const obtenerPerfilUsuario= async (token)=>{
-        //  const headers = getAuthHeaders()
+        // const headers = getAuthHeaders()
         // console.log(headers)
         try{
           const data = await PerfilUsuario(token)
@@ -66,6 +67,9 @@ export const AppProvider = ({ children }) => {
       value={{
         users,
         userActual,
+        products,
+        cartItems,
+        setCartItems,
         agregarUser,
         obtenerPerfilUsuario
       }}

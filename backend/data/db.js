@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const strConnection = process.env.DB_URL
+const strConnection = process.env.MONGODB_URI
 
 exports.connectDB = async () => {
     if (!strConnection) {
