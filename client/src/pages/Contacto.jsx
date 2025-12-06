@@ -1,11 +1,20 @@
-import { useState } from "react";
 // import "../styles/contacto.css";
-// import {Formik, Form, Field, ErrorMessage} from 'Formik';
+import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as yup from 'yup';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-const schema = yup.object().shape({
+const Contacto = () => {
+  const initialValues = {
+    nombre:'',
+    email:'',
+    mensaje:'',
+  }
+
+  const validationSchema = yup.object().shape({
   nombre: yup
-  .string().required("El nombre es obligatorio"),
+  .string().min(3, "Mínimo 3 caracteres").required("El nombre es obligatorio"),
   email: yup
   .string().email("Correo electrónico inválido")
   .required("El email es obligatorio"),
@@ -13,48 +22,9 @@ const schema = yup.object().shape({
   .string().required("El mensaje es obligatorio"),
 });
 
-function Contacto() {
-  const [formData, setFormData] = useState({
-    nombre:'',
-    email:'',
-    mensaje:'',
-  })
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }))
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    console.log("datos:", formData)
-
-    let errores = [];
-
-    // Validación de nombre
-    if (!formData.nombre.trim()) errores.push("Nombre no completado.");
-    else if (formData.nombre.trim().length < 3)
-      errores.push("El nombre debe tener al menos 3 caracteres.");
-
-    // Validación de email
-    if (!formData.email.trim()) errores.push("Email no completado.");
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim()))
-      errores.push("Correo electrónico inválido.");
-
-    // Validación de mensaje
-    if (!formData.mensaje.trim()) errores.push("Mensaje no completado.");
-
-    if (errores.length > 0) {
-      alert(errores.join("\n"));
-      return;
-    }
-
+  const handleSubmit = async (formData, {resetForm}) => {
     try {
-      const response = await fetch('https://api.ejemplo.com/register', {
+      const response = await fetch(`${BASE_URL}/api/contacto`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -62,16 +32,17 @@ function Contacto() {
         body: JSON.stringify(formData),
       });
       if (!response.ok) {
-        throw new Error('El registro falló.');
+        const errorData = await response.json();
+        throw new Error(errorData.message);
       }
 
-      const result = await response.json();
-      alert(`¡Gracias ${result.nombre} ! Su consulta fue enviada con éxito. \nNos pondremos en contacto a la brevedad.`);
-      // Limpiar el formulario después del envío
-      setFormData({ nombre: '', email: '', mensaje: '' });
- 
+      const data = await response.json();
+      console.log("Consulta enviada:", formData);
+      toast.success(`¡Gracias ${formData.nombre}! Su consulta fue enviada con éxito. \nNos pondremos en contacto a la brevedad.`);
+      resetForm();
     } catch (error) {
-      alert(error.message);
+      console.error("Error en el envío de la consulta:", error.message);
+      toast.error('Error al enviar la consulta');
     }
   };
 
@@ -86,43 +57,30 @@ function Contacto() {
         Compartinos tus dudas o inquietudes aquí abajo y nos pondremos en
         contacto para resolverlas juntos.
       </h4>
-
-      <form id="formularioContacto" onSubmit={handleSubmit}>
+    <Formik
+    initialValues={initialValues}
+    validationSchema={validationSchema}
+    onSubmit={handleSubmit}
+    >
+      {({ isSubmitting }) => (
+      <Form>
         <div>
-          <label htmlFor="nombreUsuario">NOMBRE</label>
-          <input
-            type="text"
-            id="nombreUsuario"
-            name="nombre"
-            value={formData.nombre}
-            onChange={handleChange}
-          />
+          <ErrorMessage name="nombre" component="div" className="error" />
+          <Field type="text" name="nombre" placeholder="Nombre"/>
+        </div>
+        <div>
+          <ErrorMessage name="email" component="div" className="error" />
+          <Field type="email" name="email" placeholder="Correo electrónico"/>
+        </div>
+        <div>
+          <ErrorMessage name="mensaje" component="div" className="error" />
+          <Field as="textarea" name="mensaje" placeholder="Mensaje" rows="5"/>
         </div>
 
-        <div>
-          <label htmlFor="emailUsuario">CORREO ELECTRÓNICO</label>
-          <input
-            type="email"
-            id="emailUsuario"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="mensajeUsuario">MENSAJE</label>
-          <textarea
-            id="mensajeUsuario"
-            name="mensaje"
-            rows="5"
-            value={formData.mensaje}
-            onChange={handleChange}
-          />
-        </div>
-
-        <button type="submit">ENVIAR</button>
-      </form>
+        <button type="submit" disabled={isSubmitting}>ENVIAR</button>
+      </Form>
+      )}
+      </Formik>
     </>
   );
 }

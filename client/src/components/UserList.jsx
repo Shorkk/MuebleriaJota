@@ -43,7 +43,7 @@ export const UserList = () => {
             <div className="productos-grid">
             {users.map((user) => (
                 <div className="card">
-                <p>iD: {user._id}</p>
+                <p>ID: {user._id}</p>
                 <p>Nombre: {user.nombre}</p>
                 <p>Email: {user.email}</p>
                 <p>Rol: {user.role} </p>

@@ -10,7 +10,8 @@ const infoRouter = require("./routes/info")
 const productoRouter = require("./routes/product.routes")
 const pedidoRouter = require("./routes/order.routes")
 const userRouter = require("./routes/user.routes")
-const authRouter = require('./routes/auth.routes')
+const authRouter = require("./routes/auth.routes")
+const contactoRouter = require("./routes/contacto.routes")
 const cors = require("cors")
 const { connectDB } = require("./data/db")
 
@@ -22,6 +23,7 @@ app.use('/api/auth', authRouter)
 app.use('/api/users', userRouter)
 app.use('/api/orders', pedidoRouter)
 app.use("/api/productos", productoRouter)
+app.use("/api/contacto", contactoRouter)
 
 // Rutas no definidas
 app.use((req, res, next) => {

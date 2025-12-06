@@ -5,51 +5,31 @@ import * as Yup from "yup";
 import { useAuthContext } from "../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const Login = () => {
   const { login } = useAuthContext();
   const navigate = useNavigate();
   const location = useLocation();
-  const [values, setValues] = useState({
+  const initialValues = {
     email: "",
     password: "",
-  });
-
-  const handleChange = (e) => {
-    setValues({
-      ...values,
-      [e.target.name]: e.target.value,
-    });
   };
 
   const validationSchema = Yup.object({
     email: Yup.string().email("Email inválido").required("El email es obligatorio"),
-    password: Yup.string().min(6, "Mínimo 6 caracteres").required("La contraseña es obligatoria"),
+    password: Yup.string().min(8, "Mínimo 8 caracteres").required("La contraseña es obligatoria"),
   });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // acá sí corresponde
-
+  const handleSubmit = async (formData, {resetForm}) => {
     try {
-      await validationSchema.validate(values);
-
-      await login(values);
-
+      await login(formData);
       toast.success("Usuario logeado con éxito!");
-
-      // Limpio formulario
-      setValues({ email: "", password: "" });
-
+      resetForm();
       // Redirección
       const redirectPath = location.state?.from || "/";
       navigate(redirectPath);
-
     } catch (error) {
-      if (error.name === "ValidationError") {
-        toast.error(error.message);
-        return;
-      }
-
       console.error(`Error en el login: ${error.message}`);
       toast.error("No se pudo logear el usuario :(");
     }
@@ -58,34 +38,30 @@ const Login = () => {
   return (
     <>
     <h1>LOGIN DE USUARIO</h1>
-    <form onSubmit={handleSubmit}>
+    <Formik
+    initialValues={initialValues}
+    validationSchema={validationSchema}
+    onSubmit={handleSubmit}
+    >
+    {({ isSubmitting }) => (
+    <Form>
       <div>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={values.email}
-          onChange={handleChange}
-        />
+        <Field type="email" name="email" placeholder="Email"/>
+        <ErrorMessage name="email" component="div" className="error-message" />
       </div>
-
       <div>
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={values.password}
-          onChange={handleChange}
-        />
+        <Field type="password" name="password" placeholder="Password"/>
+        <ErrorMessage name="password" component="div" className="error-message"/>
       </div>
-
-      <button type="submit">
+      <button type="submit" disabled={isSubmitting}>
         INGRESAR
       </button>
-    </form>
+    </Form>
+    )}
+    </Formik>
     <br></br>
     <h4>¿No tienes una cuenta?</h4>
-    <h4 className="register-login-link"> <NavLink to="/register">Regístrate aquí</NavLink></h4>
+    <h4 className="register-login-link"><NavLink to="/register">Regístrate aquí</NavLink></h4>
     </>
   );
 };
