@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom"
 import { useAuthContext } from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import MisPedidos from  "./pages/MisPedidos.jsx";
 
 import HomePage from "./pages/HomePage"
 import Register from "./pages/Register"
@@ -40,6 +41,7 @@ function App() {
           <Route path="/catalogo" element={<Catalogo />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/productos/:id" element={<Detalle />} />
+          <Route path="/mis-pedidos" element={<MisPedidos />} />
         </Routes>
       </main>
 
