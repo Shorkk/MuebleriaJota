@@ -61,7 +61,7 @@ const OrderCard = ({ item }) => {
         <span><strong>{item.cantidad}</strong></span>
         <button onClick={() => actualizarCantidad(item.id, item.cantidad + 1)}>
         <FaPlus /></button>
-        <button className="remove-item" onClick={() => eliminarDelCarrito(item.id)}><FaTrashAlt /></button>
+        <button className="button_eliminar" onClick={() => eliminarDelCarrito(item.id)}><FaTrashAlt /></button>
     </div>
   );
 };
@@ -85,7 +85,7 @@ const OrderCard = ({ item }) => {
                         <div className="cart-summary">
                         <p>Total: <strong>${totalCarrito}</strong></p>
                         <button onClick={handleFinalizarCompra}>Finalizar Compra</button>
-                        <button onClick={vaciarCarrito}>Vaciar Carrito</button>
+                        <button className='button_eliminar' onClick={vaciarCarrito}>Vaciar Carrito</button>
                 </div>
             </>
             )}

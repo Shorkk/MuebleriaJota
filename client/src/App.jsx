@@ -12,7 +12,7 @@ import Register from "./pages/Register"
 import Login from "./pages/Login"
 import CartPage from "./pages/CartPage.jsx"
 import Detalle from "./pages/Detalle.jsx"
-import UserProfile from "./pages/UserProfile.jsx"
+import UserProfile from "./pages/MyProfile.jsx"
 import NavBar from './components/NavBar.jsx'
 import Catalogo from "./pages/Catalogo.jsx"
 import Contacto from "./pages/Contacto.jsx"

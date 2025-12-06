@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { fetchUsers, createUser, PerfilUsuario} from "../service/userService";
+import { fetchUsers, createUser, perfilUsuario, eliminarUser, cambiarRolUser } from "../service/userService";
 import { fetchProducts } from "../service/productService"
 import { useAuthContext } from "./AuthContext";
 import { AppContext } from "./AppContext";
@@ -44,17 +44,29 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-    const agregarUser = async (data) => {
+  const agregarUser = async (data) => {
     const nuevo = await createUser(data);
     setUsers((prev) => [...prev, nuevo]);
     return nuevo;
+  };
+
+  const eliminarUserContext = async (userId) => {
+    await eliminarUser({ _id: userId });
+    setUsers((prev) => prev.filter((user) => user._id !== userId));
+  };
+
+  const cambiarRolUserContext = async (user) => {
+    const updatedUser = await cambiarRolUser(user);
+    setUsers((prev) =>
+      prev.map((u) => (u._id === user._id ? updatedUser : u))
+    );
   };
 
   const obtenerPerfilUsuario= async (token)=>{
         // const headers = getAuthHeaders()
         // console.log(headers)
         try{
-          const data = await PerfilUsuario(token)
+          const data = await perfilUsuario(token)
           console.log(data)
           setUserActual(data)
         }catch(err){
@@ -71,7 +83,9 @@ export const AppProvider = ({ children }) => {
         cartItems,
         setCartItems,
         agregarUser,
-        obtenerPerfilUsuario
+        obtenerPerfilUsuario,
+        eliminarUserContext,
+        cambiarRolUserContext
       }}
     >
       {children}

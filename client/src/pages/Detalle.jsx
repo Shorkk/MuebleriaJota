@@ -39,7 +39,8 @@ const Detalle = () => {
     if (id) fetchProducto();
   }, [id]);
 
-  if (loading) return <p>Cargando producto...</p>;
+  if (loading) return <h4>Cargando producto...</h4>;
+  
   if (error) return (
     <div>
       <p>{error}</p>

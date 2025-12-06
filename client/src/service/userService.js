@@ -23,7 +23,7 @@ export async function createUser(data) { // Me retorna el usuario creado
   return res.json();
 }
 
-export async function PerfilUsuario(token) { // con auth, me retorna el perfil del usuario
+export async function perfilUsuario(token) { // con auth, me retorna el perfil del usuario
       try {
         if (!token) {
           console.error("No se encontró token de autenticación.");
@@ -50,4 +50,22 @@ export async function PerfilUsuario(token) { // con auth, me retorna el perfil d
         console.error("Error al obtener perfil:", error.message);
       }
     
+}
+
+export async function eliminarUser(user) {
+  const res = await fetch(`${BASE_URL}/api/users/${user._id}`, {
+    method: 'DELETE',
+  });
+  if (!res.ok) throw new Error('Error al eliminar el usuario');
+  return res.json();
+}
+
+export async function cambiarRolUser(user) {
+  const res = await fetch(`${BASE_URL}/api/users/${user._id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ role: user.role === 'admin' ? 'user' : 'admin' }),
+  });
+  if (!res.ok) throw new Error('Error al cambiar el rol del usuario');
+  return res.json();
 }
