@@ -4,7 +4,9 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:3000";
+import { NavLink } from "react-router-dom";
+
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const Register = () => {
   const navigate = useNavigate();
@@ -123,8 +125,8 @@ const Register = () => {
 
         <div>
           <input
+            type="password"
             name="password"
-            type="text"
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
@@ -146,6 +148,9 @@ const Register = () => {
           REGISTRARME
         </button>
       </form>
+          <br></br>
+    <h4>¿Ya tienes una cuenta?</h4>
+    <h4 className="register-login-link"> <NavLink to="/login">Inicia sesión aquí</NavLink></h4>
     </>
   );
 };

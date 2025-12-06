@@ -85,7 +85,11 @@ body {
 header {
     width: 100%;
     background-color: var(--color-sienna);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
+
 
 .navbar {
     max-width: 100%;
@@ -195,7 +199,7 @@ form label::after {
   line-height: 4px;
 }
 
-input[type="text"], input[type="email"], textarea {
+input[type="text"], input[type="email"], input[type="password"], textarea {
   font-family: var(--font-body);
   width: 100%;
   padding: 16px 12px;
@@ -210,8 +214,9 @@ input[type="text"], input[type="email"], textarea {
 }
 
 select {
+  width: 217px;
+  max-width: 90%;
   font-family: var(--font-body);
-  width: 40%;
   padding: 16px 12px;
   font-size: 12pt;
   border: 1px solid #000000;
@@ -307,13 +312,13 @@ button:hover {
   margin-right: auto;
 }
 
-.register-link a {
+.register-login-link a {
     color: var(--color-sienna);
     font-weight: var(--font-weight-bold);
     text-decoration: underline;
 }
 
-.register-link a:hover {
+.register-login-link a:hover {
     color: var(--color-oro);
 }
 

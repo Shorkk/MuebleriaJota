@@ -10,14 +10,11 @@ const Login = () => {
   const { login } = useAuthContext();
   const navigate = useNavigate();
   const location = useLocation();
-
-  // Estado de formulario
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
 
-  // Manejo de inputs
   const handleChange = (e) => {
     setValues({
       ...values,
@@ -25,7 +22,6 @@ const Login = () => {
     });
   };
 
-  // Yup schema
   const validationSchema = Yup.object({
     email: Yup.string().email("Email inválido").required("El email es obligatorio"),
     password: Yup.string().min(6, "Mínimo 6 caracteres").required("La contraseña es obligatoria"),
@@ -35,10 +31,8 @@ const Login = () => {
     e.preventDefault(); // acá sí corresponde
 
     try {
-      // Validación Yup
       await validationSchema.validate(values);
 
-      // Login del backend
       await login(values);
 
       toast.success("Usuario logeado con éxito!");
@@ -77,7 +71,7 @@ const Login = () => {
 
       <div>
         <input
-          type="text"
+          type="password"
           name="password"
           placeholder="Password"
           value={values.password}
@@ -91,7 +85,7 @@ const Login = () => {
     </form>
     <br></br>
     <h4>¿No tienes una cuenta?</h4>
-    <h4 className="register-link"> <NavLink to="/register">Regístrate aquí</NavLink></h4>
+    <h4 className="register-login-link"> <NavLink to="/register">Regístrate aquí</NavLink></h4>
     </>
   );
 };
