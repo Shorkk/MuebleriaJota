@@ -23,7 +23,8 @@ function MisPedidos() {
 
       try {
         const data = await obtenerPedidosDelUser(token);
-        const sortedData = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        const pedidosArray = Array.isArray(data) ? data : (data.pedidos || []);
+        const sortedData = pedidosArray.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         
         setPedidos(sortedData);
       } catch (err) {
@@ -60,16 +61,20 @@ function MisPedidos() {
     <div className="mis-pedidos-page">
       <h1>Mis Pedidos</h1>
       {pedidos.map((pedido) => (
-        <div key={pedido._id || pedido.id} className="pedido-card"> 
-          <h3>Pedido N° {pedido._id ? pedido._id.slice(-6) : 'N/A'}</h3>
-          <p>Fecha: {new Date(pedido.createdAt || pedido.fecha).toLocaleDateString()}</p> 
-          <p>Estado: **{pedido.status || pedido.estado || 'Completado'}**</p>
-          <p>Total: **${pedido.total ? pedido.total.toFixed(2) : '0.00'}**</p>
+        <div key={pedido._id} className="pedido-card"> 
+          <h3>Pedido N° {pedido._id.slice(-6)}</h3>
+          <p>Fecha: {new Date(pedido.createdAt).toLocaleDateString()}</p> 
+          <p>Estado: <strong>{pedido.estado || 'Pendiente'}</strong></p>
+          <p>Total: <strong>${pedido.total ? pedido.total.toFixed(2) : '0.00'}</strong></p>
           
           <ul className="pedido-items">
             {pedido.items && pedido.items.map((item, index) => (
               <li key={index}>
-                {item.nombre || 'Producto Desconocido'} (x{item.cantidad}) - ${item.precio.toFixed(2)}
+                <span>
+                  {item.productId?.nombre || item.productId?.nombre || 'Producto Desconocido'} 
+                </span>
+                <span> x{item.cantidad}</span>
+                {item.productId?.precio && <span> - ${(item.productId.precio * item.cantidad).toFixed(2)}</span>}
               </li>
             ))}
           </ul>

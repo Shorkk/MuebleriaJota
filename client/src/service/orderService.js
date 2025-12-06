@@ -1,29 +1,46 @@
 import axios from "axios";
 import { object } from "yup";
-const API_URL = import.meta.env.VITE_BASE_URL;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-export const crearPedido = async (object, token) => {
+export const crearPedido = async (pedido, token) => {
   try {
-    const response = await axios.post(`${API_URL}/api/orders`, object, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
+    const response = await fetch(`${BASE_URL}/api/orders`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(pedido)
     });
-    return response.data;
-  } catch (error) {
-    throw new Error(error.response?.data?.message || "Error al crear el pedido");
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Error al crear el pedido");
     }
+
+    return await response.json();
+  } catch (error) {
+    throw new Error(error.message || "Error al crear el pedido");
+  }
 };
 
 export const obtenerPedidosDelUser = async (token) => {
-    try {
-        const response = await axios.get(`${API_URL}/api/orders`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        return response.data;
-    } catch (error) {
-        throw new Error(error.response?.data?.message || "Error al obtener los pedidos del usuario");
+  try {
+    const response = await fetch(`${BASE_URL}/api/orders`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Error al obtener los pedidos del usuario");
     }
+
+    return await response.json();
+  } catch (error) {
+    throw new Error(error.message || "Error al obtener los pedidos del usuario");
+  }
 };
