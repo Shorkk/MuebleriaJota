@@ -61,7 +61,7 @@ const Login = () => {
     </Formik>
     <br></br>
     <h4>¿No tienes una cuenta?</h4>
-    <h4 className="register-login-link"><NavLink to="/register">Regístrate aquí</NavLink></h4>
+    <h4 className="redirect-link"><NavLink to="/register">Regístrate aquí</NavLink></h4>
     </>
   );
 };

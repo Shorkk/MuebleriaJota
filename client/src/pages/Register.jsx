@@ -91,7 +91,7 @@ const Register = () => {
     </Formik>
           <br></br>
     <h4>¿Ya tienes una cuenta?</h4>
-    <h4 className="register-login-link"> <NavLink to="/login">Inicia sesión aquí</NavLink></h4>
+    <h4 className="redirect-link"> <NavLink to="/login">Inicia sesión aquí</NavLink></h4>
     </>
   );
 };

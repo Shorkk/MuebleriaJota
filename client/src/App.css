@@ -38,9 +38,9 @@
   transition: filter 300ms;
   width: 45px;
   height: 45px;
-  margin: 10px;
   background-color: var(--color-grey);
   border-radius: 12px;
+  flex-shrink: 0;
 }
 
 .logo:hover {
@@ -91,32 +91,42 @@ body {
 
 header {
     width: 100%;
+    display: flex;
     background-color: var(--color-sienna);
     position: sticky;
     top: 0;
     z-index: 1000;
-}
-
-
-.navbar {
-    max-width: 100%;
-    display:flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
 }
 
+.navbar {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;  
+  padding: 0px 15px;
+  background-color: var(--color-sienna);
+  gap: 10px;
+}
+
 .navbar ul {
-    flex: 4;
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-    padding: 10px;
-    font-weight: var(--font-weight-bold);
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
-.navbar ul li {
-  align-self: center;
+
+.navbar ul li a,
+.navbar ul li p {
+  color: var(--color-grey);
+  text-decoration: none;
+  font-weight: var(--font-weight-bold);
 }
+
 a {
     text-decoration: none;
     color: var(--color-grey);
@@ -324,13 +334,13 @@ button:hover {
   margin-right: auto;
 }
 
-.register-login-link a {
+.redirect-link a {
     color: var(--color-sienna);
     font-weight: var(--font-weight-bold);
     text-decoration: underline;
 }
 
-.register-login-link a:hover {
+.redirect-link a:hover {
     color: var(--color-oro);
 }
 
@@ -353,9 +363,6 @@ footer p {
 
 /* Media Query para pantallas más grandes (el breakpoint es 768px) */
 @media (min-width: 768px) {
-  .logo {
-    margin: 10px; 
-  }
   form label {
     width: 500px;    
     max-width: none;

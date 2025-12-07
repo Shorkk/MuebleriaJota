@@ -29,7 +29,6 @@ export const obtenerPedidosDelUser = async (token) => {
     const response = await fetch(`${BASE_URL}/api/orders`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       }
     });

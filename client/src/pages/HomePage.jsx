@@ -5,7 +5,7 @@ import Catalogo from "./Catalogo.jsx"
 const HomePage = () => {
   return (
     <>
-      <h1>MUEBLERÍA JOTA</h1>
+      <h1>MUEBLERÍA HERMANOS JOTA</h1>
       <h4>¡Bienvenido/a a nuestra increíble tienda!</h4>
       <h2>¡Productos Destacados del día!</h2>
       <div className="productos-grid">

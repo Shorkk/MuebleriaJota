@@ -57,7 +57,6 @@ exports.obtenerPedidosUsuario = async (req, res) => {
 
         console.log('Buscando pedidos para userId:', userId);
         
-        // Sin populate, retorna los ObjectIds directamente
         const pedidos = await Pedido.find({userId: userId});
         
         console.log('Pedidos encontrados:', pedidos.length);
