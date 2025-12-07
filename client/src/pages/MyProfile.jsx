@@ -1,14 +1,10 @@
-import { useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { useAuthContext } from '../context/AuthContext';
 import { UserList } from '../components/UserList.jsx';
 
 const UserProfile = () => {
   const {userActual} = useAppContext()
-    const { isAuthenticated } = useAuthContext();
-  useEffect(()=>{
-    console.log(userActual)
-  },[userActual])
+  const { isAdmin, isAuthenticated } = useAuthContext();
 
   return (
     <>
@@ -23,12 +19,14 @@ const UserProfile = () => {
       ) : (
           <h2> Loguéate para ver tu perfil...</h2>
           )}
-          { userActual.user.role === 'admin' ? (
+          { isAdmin ? (
             <div>
               <UserList />
             </div>
             ) : (
+              <><br></br><br></br><br></br>
               <h4>No tienes privilegios de administrador.</h4>
+              </>
             )
         }    
     </>

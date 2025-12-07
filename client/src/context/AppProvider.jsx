@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { fetchUsers, createUser, perfilUsuario, eliminarUser, cambiarRolUser } from "../service/userService";
+import { createProducto, eliminarProducto } from "../service/productService";
 import { fetchProducts } from "../service/productService"
 import { useAuthContext } from "./AuthContext";
 import { AppContext } from "./AppContext";
@@ -74,6 +75,21 @@ export const AppProvider = ({ children }) => {
         }
   }
 
+  const createProductoContext = async (data) => {
+    const nuevo = await createProducto(data);
+    setProducts((prev) => [...prev, nuevo]);
+    return nuevo;
+  };
+
+  const eliminarProductoContext = async (productId) => {
+    if (!token) {
+      throw new Error('No hay token. Debes estar autenticado para eliminar un producto.');
+    }
+    console.log('Eliminando producto con token:', token.substring(0, 20) + '...');
+    await eliminarProducto(productId, token);
+    setProducts((prev) => prev.filter((product) => product._id !== productId));
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -85,7 +101,9 @@ export const AppProvider = ({ children }) => {
         agregarUser,
         obtenerPerfilUsuario,
         eliminarUserContext,
-        cambiarRolUserContext
+        cambiarRolUserContext,
+        createProductoContext,
+        eliminarProductoContext
       }}
     >
       {children}

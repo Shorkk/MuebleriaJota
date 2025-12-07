@@ -43,4 +43,25 @@ export async function DetalleProducto(id) {
     console.error("Error al obtener producto:", error.message || error);
     throw error;
   }
-}
+  }
+
+  export async function eliminarProducto(id, token) {
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    
+    // Si hay token, agregarlo al header Authorization
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+    
+    const res = await fetch(`${BASE_URL}/api/productos/${id}`, {
+      method: 'DELETE',
+      headers,
+    });
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      throw new Error(errorData.error || errorData.message || 'Error al eliminar el producto');
+    }
+    return res.json();
+  }

@@ -23,7 +23,10 @@ exports.verificarToken = async (req, res, next) => {
 };
 
   exports.verificarAdmin = (req, res, next) => {
-  if (!req.user?.role?.includes('admin')) {
+  if (!req.user) {
+    return res.status(401).json({ error: 'No autorizado. Usuario no identificado.' });
+  }
+  if (req.user.role !== 'admin') {
     return res.status(403).json({ error: 'Acceso denegado. Requiere rol de administrador.' });
   }
   next();

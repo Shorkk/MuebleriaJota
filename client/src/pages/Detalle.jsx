@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
 import { toast } from "react-toastify";
 import { useAuthContext } from "../context/AuthContext";
+import { useAppContext } from '../context/AppContext';
 import { NavLink } from "react-router-dom";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -15,7 +16,8 @@ const Detalle = () => {
   const [producto, setProducto] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+  const { isAdmin } = useAuthContext();
+  const { eliminarProductoContext } = useAppContext();
 
   useEffect(() => {
     const fetchProducto = async () => {
@@ -62,6 +64,17 @@ const Detalle = () => {
     toast.success("Producto agregado al carrito");
   };
 
+  const handleEliminarProducto = async (producto) => {
+    try {
+      await eliminarProductoContext(producto._id);
+      toast.success("Producto eliminado correctamente");
+      navigate("/catalogo");
+    } catch (err) {
+      console.error("Error al eliminar producto:", err);
+      toast.error("No se pudo eliminar el producto");
+    }
+  };
+
   return (
     <>
       <button className="button_return" onClick={() => navigate(-1)}>← Volver</button>
@@ -106,6 +119,11 @@ const Detalle = () => {
           ))}
           <button className="button_add_cart" onClick={() => handleAgregarAlCarrito(producto)}>Agregar al carrito</button>
         </div>
+        {isAdmin ? (
+          <h4>
+          <button className="button_eliminar" onClick={() => handleEliminarProducto(producto)} >Eliminar Producto</button>
+          </h4>
+        ) : null}
     </>
   );
 };

@@ -42,7 +42,7 @@ export const UserList = () => {
         ) : (
             <div className="productos-grid">
             {users.map((user) => (
-                <div className="card">
+                <div className="card" key={user._id}>
                 <p>ID: {user._id}</p>
                 <p>Nombre: {user.nombre}</p>
                 <p>Email: {user.email}</p>
