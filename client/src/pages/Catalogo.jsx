@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import loading from "../assets/loading.gif";
 const BASE_URL = import.meta.env.VITE_BASE_URL
 
 
@@ -51,11 +51,10 @@ const Catalogo = () => {
 
   if (isLoading) {
     return (
-      <div className="loading-state">
+       <div className="loading-state">
         <h1>CATÁLOGO DE PRODUCTOS</h1>
-        <h2>Cargando...</h2>
-        <p>Estamos recuperando el listado de muebles.</p>
-        {/*sumar spinner*/}
+        <h2>El flete está en camino...</h2>
+        <img className="loading" src={loading} alt="Cargando" />
       </div>
     );
   }
@@ -63,6 +62,7 @@ const Catalogo = () => {
  return (
  <>
  <h1>CATÁLOGO DE PRODUCTOS</h1>
+ 
  {products.length === 0 ? (
  <h4>No hay productos disponibles en este momento.</h4>
  ) : (
