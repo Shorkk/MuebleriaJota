@@ -7,17 +7,19 @@
 
 ## 📌 Descripción
 
-Este proyecto corresponde al desarrollo de una plataforma de **e-commerce para Mueblería Hermanos Jota**, enfocada en la venta y gestión de productos mobiliarios. La aplicación permite a los usuarios navegar por un catálogo de productos, agregar artículos a su carrito de compras y realizar pedidos. Además, cuenta con un panel de administración para la gestión de inventario y usuarios.
+Este proyecto corresponde al desarrollo de una plataforma de **e-commerce para Mueblería Hermanos Jota**, enfocada en la venta y navegación de productos mobiliarios.
+La aplicación permite explorar un catálogo, agregar artículos al carrito y visualizar pedidos. Además, incluye un panel de administración para la gestión de usuarios.
 
-### Funcionalidades principales
+### ✔️ Funcionalidades principales
 
-* Página de inicio, catálogo, detalle de producto, carrito, contacto, perfil de usuario y login/registro.
-* Autenticación de usuarios mediante **JWT**.
-* Carrito de compras simulado con contador visible en el **header**.
-* Panel de administración para la gestión de productos (crear, editar y eliminar).
-* Almacenamiento de datos en **MongoDB** (usuarios, productos y pedidos).
+* Página de inicio, catálogo, detalle de producto, carrito, contacto, pedidos, perfil de usuario y login/registro.
+* Autenticación con **JWT** y autorización basada en roles (usuario y administrador).
+* Almacenamiento seguro de contraseñas utilizando **bcrypt** para hashing y salting
+* Carrito de compras simulado con **contador visible** en el header.
+* Panel de administración para la **gestión de usuarios** (eliminar y cambiar rol).
+* Almacenamiento de datos en **MongoDB** (usuarios, productos, pedidos, formularios de contacto).
 * Manejo de estado global con **Context API** de React.
-* Diseño completamente **responsive** (adaptado a móviles y escritorio).
+* **Diseño Mobile First (CSS)** y completamente responsivo.
 * Despliegue:
 
   * Frontend → **Vercel**
@@ -119,7 +121,7 @@ Dentro de la carpeta `MuebleriaJota/backend`:
 
 ### 🔹 Frontend (Cliente)
 
-Dentro de la carpeta `MuebleriaJota/frontend`:
+Dentro de la carpeta `MuebleriaJota/client`:
 
 1. Instalar las dependencias necesarias:
 
