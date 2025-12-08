@@ -26,6 +26,8 @@ router.get('/info', (req, res) => {
       <li>POST /api/pedidos → Crear pedido</li>
       <li>GET /api/pedidos/user/:userId → Pedidos de un usuario</li>
       <li>GET /api/pedidos → Todos los pedidos (admin)</li>
+      <br>
+      <li>POST /api/contacto → Enviar mensaje de contacto</li>
 
     </ul>
   `)
