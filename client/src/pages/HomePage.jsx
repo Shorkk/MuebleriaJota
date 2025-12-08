@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <>
       <h1>MUEBLERÍA HERMANOS JOTA</h1>
-      <h4>¡Bienvenido/a a nuestra increíble tienda!</h4>
+      <h3>¡Bienvenido/a a nuestra increíble tienda!</h3>
       <h2>¡Productos Destacados del día!</h2>
       <div className="productos-grid">
           <div className="card">
